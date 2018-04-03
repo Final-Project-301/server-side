@@ -1,0 +1,33 @@
+{
+  "name": "server-side",
+  "version": "1.0.0",
+  "description": "Final project 301 Codefellows",
+  "main": "server.js",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "pg": "^7.4.1",
+    "superagent": "^3.8.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Final-Project-301/server-side.git"
+  },
+  "keywords": [
+    "Parks",
+    "Dogs",
+    "Water",
+    "Recreation"
+  ],
+  "author": "Ryan Joanna Collin Scott",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Final-Project-301/server-side/issues"
+  },
+  "homepage": "https://github.com/Final-Project-301/server-side#readme"
+}

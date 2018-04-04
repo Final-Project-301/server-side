@@ -60,7 +60,6 @@ app.get('/activities/play', (req, res) => {
     .then(results => res.send(results.rows))
     .catch(console.err);
 });
-
 app.get('/activities/dogs', (req, res) => {
   client.query(`SELECT name, address, latitude, longitude, website FROM dogs;`)
     .then(results => res.send(results.rows))
@@ -74,5 +73,12 @@ app.get('/activities/water', (req, res) => {
 });
 
 
-app.get('*', (req, res) => res.redirect(CLIENT_URL));
+app.get('/activities/bios', (req, res) => {
+  client.query(`SELECT name, image_url, bio, linkedin_url, github_url, email FROM bios;`)
+    .then(results => res.send(results.rows))
+    .catch(console.err);
+});
+
+
+app.get('/', (req, res) => res.redirect(CLIENT_URL));
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

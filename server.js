@@ -35,12 +35,12 @@ superagent.get(url)
   });
 
 //Hit the Dogs API directly, then insert into the SQL DB
-let url2 = 'https://data.seattle.gov/resource/ybmn-w2mc.json';
+let url2 = 'https://data.seattle.gov/resource/ituq-7zbq.json';
 superagent.get(url2)
   .then(data => {
     console.log(data.body);
     data.body.forEach(object => {
-      client.query(`INSERT INTO dogs (name, address, latitude, longitude, website) VALUES ($1, $2, $3, $4, $5)`, [object.name, object.address, object.latitude, object.longitude, object.website]),
+      client.query(`INSERT INTO dogs (name, address, latitude, longitude, website) VALUES ($1, $2, $3, $4, $5)`, [object.common_name, object.address, object.latitude, object.longitude, object.website]),
       err => console.error(err);
     });
   });

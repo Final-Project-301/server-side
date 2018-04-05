@@ -29,7 +29,7 @@ let url = 'https://data.seattle.gov/resource/mnai-wmyz.json';
 superagent.get(url)
   .then(data => {
     data.body.forEach(object => {
-      client.query(`INSERT INTO play (name, address, latitude, longitude, website) VALUES ($1, $2, $3, $4, $5)`, [object.common_name, object.address, object.latitude, object.longitude, object.website]),
+      client.query(`INSERT INTO play (name, address, latitude, longitude, website) VALUES ($1, $2, $3, $4, $5)`, [object.common_name, object.address, object.latitude, object.longitude, object.website.url]),
       err => console.error(err);
     });
   });
@@ -41,6 +41,7 @@ superagent.get(url2)
     console.log(data.body);
     data.body.forEach(object => {
       client.query(`INSERT INTO dogs (name, address, latitude, longitude, website) VALUES ($1, $2, $3, $4, $5)`, [object.common_name, object.address, object.latitude, object.longitude, object.website]),
+
       err => console.error(err);
     });
   });
@@ -60,7 +61,6 @@ app.get('/activities/play', (req, res) => {
     .then(results => res.send(results.rows))
     .catch(console.err);
 });
-
 app.get('/activities/dogs', (req, res) => {
   client.query(`SELECT name, address, latitude, longitude, website FROM dogs;`)
     .then(results => res.send(results.rows))
@@ -74,5 +74,12 @@ app.get('/activities/water', (req, res) => {
 });
 
 
-app.get('*', (req, res) => res.redirect(CLIENT_URL));
+app.get('/activities/bios', (req, res) => {
+  client.query(`SELECT name, image_url, bio, linkedin_url, github_url, email FROM bios;`)
+    .then(results => res.send(results.rows))
+    .catch(console.err);
+});
+
+
+app.get('/', (req, res) => res.redirect(CLIENT_URL));
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
